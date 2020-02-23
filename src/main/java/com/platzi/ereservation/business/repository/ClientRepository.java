@@ -19,7 +19,7 @@ public interface ClientRepository extends JpaRepository<Client, String>
 	 * @param cliLastName
 	 * @return
 	 */
-	public List<Client> findByLastName(String cliLastName);
+	public List<Client> findByCliLastName(String cliLastName);
 	
 	public Client findByIdentification(String cliIdentification);
 	
