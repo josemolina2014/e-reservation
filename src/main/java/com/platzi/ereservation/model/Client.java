@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,6 +23,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table (name = "client")
+
+@NamedQuery(name = "Client.findByIdentification", query = "select c from Client c where c.cliIdentification= ?1" )
+
 public class Client {
 	
 	@Id
@@ -29,11 +33,11 @@ public class Client {
 	@GenericGenerator(name ="system.uuid", strategy = "uuid2" )
 	private String cliId;	
 	private String cliName;
-	private String cliLastName;
-	private String cliID;
+	private String cliLastName;	
 	private String cliAddress;
 	private String cliPhone;
 	private String cliEmail;
+	private String cliIdentification;
 	
 	@OneToMany(mappedBy = "client")
 	private Set<Reserve> reserves;
