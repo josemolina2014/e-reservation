@@ -66,4 +66,8 @@ public class ClientService {
 	public List<Client> findByLastName(String cliLastName){
 		return this.clientRepository.findByCliLastName(cliLastName);
 	}
+	
+	public List<Client> findAll(){
+		return this.clientRepository.findAll();
+	}
 }
