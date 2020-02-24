@@ -17,6 +17,11 @@ import com.platzi.ereservation.business.services.ClientService;
 import com.platzi.ereservation.model.Client;
 import com.platzi.ereservation.view.resources.vo.ClientVO;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Cliente de servicio web
  * @author josemolina
@@ -25,6 +30,7 @@ import com.platzi.ereservation.view.resources.vo.ClientVO;
 
 @RestController
 @RequestMapping("/api/client")
+@Api(tags = "client")
 public class ClientResource {
 	
 	private final ClientService clientService;
@@ -34,6 +40,11 @@ public class ClientResource {
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Crear cliente", notes = "Servicio para crear un nuevo cliente")
+	@ApiResponses(value = {
+							@ApiResponse(code = 201, message = "Cliente creado correctamente"),
+							@ApiResponse(code = 400, message = "Solicitud Inválida")
+						 })
 	public ResponseEntity<Client> createClient(@RequestBody ClientVO clientVO){
 		Client client = new Client();
 		
@@ -50,6 +61,11 @@ public class ClientResource {
 	
 	
 	@PutMapping("/{identification}")
+	@ApiOperation(value = "Actualizar cliente", notes = "Servicio para actualizar un cliente")
+	@ApiResponses(value = {
+							@ApiResponse(code = 201, message = "Cliente actualizado correctamente"),
+							@ApiResponse(code = 404, message = "Cliente no encontrado")
+						 })
 	public ResponseEntity<Client> updateClient(@PathVariable("identification") String identification,  @RequestBody ClientVO clientVO){
 		Client client = this.clientService.findByIdentification(identification);
 		if(client==null)
@@ -68,6 +84,12 @@ public class ClientResource {
 	}
 	
 	@DeleteMapping("/{identificaion}")
+	@PutMapping("/{identification}")
+	@ApiOperation(value = "Eliminar cliente", notes = "Servicio para eliminar un cliente")
+	@ApiResponses(value = {
+							@ApiResponse(code = 201, message = "Cliente eliminado correctamente"),
+							@ApiResponse(code = 404, message = "Cliente no encontrado")
+						 })
 	public void deleteClient(@PathVariable("identificaion") String identification) {
 		Client client = this.clientService.findByIdentification(identification);
 		if(client!=null)
@@ -77,6 +99,11 @@ public class ClientResource {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "Listar clientes", notes = "Servicio para listar todos los clientes")
+	@ApiResponses( value = {
+							@ApiResponse(code = 201, message = "Clientes encontrados"),
+							@ApiResponse(code = 404, message = "Clientes no encontrados")
+						})
 	public ResponseEntity<List<Client>> findAll(){
 		return ResponseEntity.ok(this.clientService.findAll());
 	}
