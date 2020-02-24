@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.platzi</groupId>
 	<artifactId>e-reservation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>e-reservation</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -81,16 +81,16 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.21.0</version>
+				<version>0.33.0</version>
 				<configuration>
 					<images>
 						<image>
 							<name>josemolina2016/${project.build.finalName}</name>
 							<build>
 								<from>openjdk:latest</from>
-								<entryPoint>java -Dspring.profiles.active=prod -jar /Users/josemolina2016/application/${project.build.finalName}.jar</entryPoint>
+								<entryPoint>java -Dspring.profiles.active=prod -jar /d/Documents/application/${project.build.finalName}.jar</entryPoint>
 								<assembly>
-									<basedir>/Users/josemolina2016/application/</basedir>
+									<basedir>/d/Documents/application/</basedir>
 									<descriptorRef>artifact</descriptorRef>
 									<inline>
 										<id>assembly</id>
