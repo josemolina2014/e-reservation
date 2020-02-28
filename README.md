@@ -9,9 +9,7 @@ Creación de imagen docker
 
 
 descarga de la imagen docker de postgreSQL
-```
-docker pull postgres:9.6.6-alpine
-```
+```docker pull postgres:9.6.6-alpine```
 
 Inicialización de la imagen docker 
 ```docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=platzi```
